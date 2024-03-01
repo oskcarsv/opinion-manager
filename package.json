@@ -1,0 +1,13 @@
+{
+  "name": "opinion-manager",
+  "version": "1.0.0",
+  "description": "API of opinion manager",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Oscar Morales",
+  "license": "ISC"
+}
