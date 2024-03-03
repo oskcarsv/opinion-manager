@@ -2,7 +2,7 @@
 
 import { Schema, model } from "mongoose";
 
-const PublicationSchema = Schema({
+const PostSchema = Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User',
@@ -27,4 +27,4 @@ const PublicationSchema = Schema({
 });
 
 
-export default model('Publication', PublicationSchema);
+export default model('Post', PostSchema);

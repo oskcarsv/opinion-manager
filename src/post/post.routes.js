@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { getPublications, getPublicationById, createPublication} from "./publication.controller.js";
+import { getPosts, getPostById, createPost} from "./post.controller.js";
 import { existePublicacionById} from "../helpers/db-validators-publi.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -8,7 +8,7 @@ import { validarJWT } from "../middlewares/validar-jwt.js";
 const router = Router();
 
 
-router.get("/", getPublications);
+router.get("/", getPosts);
 
 router.get(
   "/:id",
@@ -17,7 +17,7 @@ router.get(
     check("id").custom(existePublicacionById),
     validarCampos,
   ],
-  getPublicationById
+  getPostById
 );
 
 router.post(
@@ -29,7 +29,7 @@ router.post(
       check("text", "The text is required").not().isEmpty(),
       validarCampos
   ],
-  createPublication
+  createPost
 );
 
 export default router;
