@@ -1,6 +1,8 @@
-import mongoose from 'mongoose';
+'use strict';
 
-const PublicationSchema = mongoose.Schema({
+import { Schema, model } from "mongoose";
+
+const PublicationSchema = Schema({
   user: {
     type: Schema.ObjectId,
     ref: 'User',
@@ -24,10 +26,5 @@ const PublicationSchema = mongoose.Schema({
   },
 });
 
-PublicationSchema.methods.toJSON = function () {
-  const { __v, _id, ...publicacion } = this.toObject();
-  publicacion.uid = _id;
-  return publicacion;
-};
 
-export default mongoose.model('Publication', PublicationSchema);
+export default model('Publication', PublicationSchema);
