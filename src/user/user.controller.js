@@ -47,9 +47,17 @@ export const updateUser = async (req, res = response) => {
     const { id } = req.params;
     const { _id, password, google, correo, ...rest } = req.body;
 
+    const requestingUserId = req.usuario._id; 
+
     if (password) {
         const salt = bcryptjs.genSaltSync();
         rest.password = bcryptjs.hashSync(password, salt);
+    }
+
+    if (requestingUserId.toString() !== id) {
+        return res.status(403).json({
+            msg: 'Access denied, only the profile owner can edit it'
+        });
     }
 
     await User.findByIdAndUpdate(id, rest);
