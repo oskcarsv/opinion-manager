@@ -22,7 +22,7 @@ export const getUsers = async (req = request, res = response) => {
 
 export const createUser = async (req, res) => {
     const { nombre, username, correo, password, role } = req.body;
-    const user = new User({ nombre, username, correo, password, role});
+    const user = new User({ nombre, username, correo, password, role });
 
     const salt = bcryptjs.genSaltSync();
     user.password = bcryptjs.hashSync(password, salt);
@@ -45,13 +45,34 @@ export const getUserById = async (req, res) => {
 
 export const updateUser = async (req, res = response) => {
     const { id } = req.params;
-    const { _id, password, google, correo, ...rest } = req.body;
+    const { _id, newPassword, google, correo, oldPassword, ...rest } = req.body;
 
-    const requestingUserId = req.usuario._id; 
+    const requestingUserId = req.usuario._id;
 
-    if (password) {
-        const salt = bcryptjs.genSaltSync();
-        rest.password = bcryptjs.hashSync(password, salt);
+    if (!oldPassword) {
+        return res.status(400).json({
+            msg: 'oldPassword is required'
+        });
+    }
+
+    if (!newPassword) {
+        return res.status(400).json({
+            msg: 'newPassword is required'
+        });
+    }
+
+    if (newPassword && newPassword.length < 6) {
+        return res.status(400).json({
+            msg: 'The new password must be at least 6 characters'
+        });
+    }
+
+    const user = await User.findById(id);
+
+    if (!bcryptjs.compareSync(oldPassword, user.password)) {
+        return res.status(400).json({
+            msg: 'The current password is not valid'
+        });
     }
 
     if (requestingUserId.toString() !== id) {
@@ -60,12 +81,17 @@ export const updateUser = async (req, res = response) => {
         });
     }
 
+    if (newPassword) {
+        const salt = bcryptjs.genSaltSync();
+        rest.password = bcryptjs.hashSync(newPassword, salt);
+    }
+
     await User.findByIdAndUpdate(id, rest);
 
-    const user = await User.findOne({ _id: id });
+    const userUpdated = await User.findOne({ _id: id });
 
     res.status(200).json({
-        msg: 'User successfully updated',
-        user,
+        msg: 'Successfully updated user',
+        userUpdated,
     });
 }
