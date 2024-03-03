@@ -1,4 +1,3 @@
-// Importar modelos necesarios
 import Post from '../post/post.model.js';
 
 

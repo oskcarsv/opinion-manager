@@ -52,20 +52,26 @@ export const updatePost = async (req, res) => {
     const { id } = req.params;
     const { _id, ...rest } = req.body;
 
+    const userId = req.usuario._id;
+
     const post = await Post.findById(id);
 
-    // Verificar propietario de la publicación
-    if (post.user.toString() !== req.usuario._id.toString()) { // Compara IDs como string
+    if (post.user.toString() !== req.usuario._id.toString()) {
         return res.status(403).json({
             msg: "Access denied, only the owner of the post can edit this post"
         });
     }
 
-    const updatedPost = await Post.findByIdAndUpdate(id, rest, { new: true }); // {new: true} devuelve el documento actualizado
+
+    const user = await User.findById(userId);
+    const updatedPost = await Post.findByIdAndUpdate(id, rest, { new: true });
 
     res.status(200).json({
         msg: "Post updated successfully",
-        post: updatedPost
+        post: {
+            ...post._doc,
+            user: user.nombre,
+        },
     });
 }
 
