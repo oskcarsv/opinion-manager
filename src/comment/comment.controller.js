@@ -53,25 +53,34 @@ export const createComment = async (req, res) => {
     });
   };
   
-export const updateComment = async (req, res) => {
+  export const updateComment = async (req, res) => {
     const { id } = req.params;
-    const { _id, user, post, ...rest } = req.body;
+    const { _id, ...rest } = req.body;
 
     const comment = await Comment.findById(id);
 
     if (comment.user.toString() !== req.usuario._id.toString()) {
         return res.status(403).json({
-            msg: "Access denied, only the author of the comment edit this comment",
+            msg: "Access denied, only the author of the comment can edit this comment",
         });
     }
 
     const updatedComment = await Comment.findByIdAndUpdate(id, rest, { new: true });
 
+    // Obtener datos adicionales
+    const user = await User.findById(updatedComment.user);
+    const post = await Post.findById(updatedComment.post); 
+
     res.status(200).json({
         msg: "Comment updated successfully",
-        comment: updatedComment,
+        comment: {
+            ...updatedComment._doc,
+            user: user.nombre,
+            post: post.title, // Titulo del post
+        },
     });
 };
+
 
 export const deleteComment = async (req, res) => {
     const { id } = req.params;
