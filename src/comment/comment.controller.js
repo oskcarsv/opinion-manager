@@ -67,7 +67,6 @@ export const createComment = async (req, res) => {
 
     const updatedComment = await Comment.findByIdAndUpdate(id, rest, { new: true });
 
-    // Obtener datos adicionales
     const user = await User.findById(updatedComment.user);
     const post = await Post.findById(updatedComment.post); 
 
@@ -76,7 +75,7 @@ export const createComment = async (req, res) => {
         comment: {
             ...updatedComment._doc,
             user: user.nombre,
-            post: post.title, // Titulo del post
+            post: post.title,
         },
     });
 };
