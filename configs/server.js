@@ -8,6 +8,8 @@ import { dbConnection } from './mongo.js';
 import userRoutes from '../src/user/user.routes.js';
 import authRoutes from '../src/auth/auth.routes.js';
 import postRoutes from '../src/post/post.routes.js';
+import commentRoutes from '../src/comment/comment.routes.js';
+
 
 class Server {
     constructor() {
@@ -16,6 +18,7 @@ class Server {
         this.usuarioPath = '/opinion-manager/v1/users';
         this.authPath = '/opinion-manager/v1/auth';
         this.postPath = '/opinion-manager/v1/posts';
+        this.commentsPath = '/opinion-manager/v1/comments';
 
         this.middlewares();
         this.conectarDB();
@@ -38,6 +41,7 @@ class Server {
         this.app.use(this.usuarioPath, userRoutes);
         this.app.use(this.authPath, authRoutes);
         this.app.use(this.postPath, postRoutes);
+        this.app.use(this.commentsPath, commentRoutes);
     }
 
     listen() {

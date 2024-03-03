@@ -4,12 +4,12 @@ import { Schema, model } from "mongoose";
 
 const CommentSchema = Schema({
     user: {
-        type: Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'User',
         required: [true, "El ID del usuario es obligatorio"],
     },
     post: {
-        type: Types.ObjectId,
+        type: Schema.ObjectId,
         ref: 'Post',
         required: [true, "El ID de la publicación es obligatorio"],
     },
