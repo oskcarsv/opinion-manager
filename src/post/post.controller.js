@@ -62,9 +62,7 @@ export const updatePost = async (req, res) => {
         });
     }
 
-
     const user = await User.findById(userId);
-    const updatedPost = await Post.findByIdAndUpdate(id, rest, { new: true });
 
     res.status(200).json({
         msg: "Post updated successfully",
@@ -77,5 +75,19 @@ export const updatePost = async (req, res) => {
 
 
 export const deletePost = async (req, res) => {
+    const { id } = req.params;
 
+    const post = await Post.findById(id);
+
+    if (post.user.toString() !== req.usuario._id.toString()) {
+        return res.status(403).json({
+            msg: "Access denied, only the owner of the post can delete this post"
+        });
+    }
+
+    await Post.findByIdAndUpdate(id, { estado: false });
+
+    res.status(200).json({
+        msg: "Post deleted successfully"
+    });
 }

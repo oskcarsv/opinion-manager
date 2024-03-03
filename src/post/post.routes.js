@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { getPosts, getPostById, createPost, updatePost} from "./post.controller.js";
+import { getPosts, getPostById, createPost, updatePost, deletePost} from "./post.controller.js";
 import { existePublicacionById} from "../helpers/db-validators-publi.js";
 import { validarCampos } from "../middlewares/validar-campos.js";
 import { validarJWT } from "../middlewares/validar-jwt.js";
@@ -41,6 +41,17 @@ router.put(
       validarCampos
   ],
   updatePost
+);
+
+router.delete(
+  "/:id",
+  [
+      validarJWT,
+      check('id', 'No es un ID válido').isMongoId(),
+      check('id').custom(existePublicacionById),
+      validarCampos
+  ],
+  deletePost
 );
 
 export default router;
