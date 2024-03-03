@@ -1,0 +1,78 @@
+[{
+  "_id": {
+    "$oid": "65e42d4916a79d4bd1395dbb"
+  },
+  "user": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "title": "Welcome Pedro",
+  "category": "Welcome",
+  "text": "Welcome to mi API pedro",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42d5d16a79d4bd1395dbf"
+  },
+  "user": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "title": "Welcome Juan Anibal",
+  "category": "Welcome",
+  "text": "Welcome to mi API Juan Anibal",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42d9b16a79d4bd1395dc4"
+  },
+  "user": {
+    "$oid": "65e423f7b0114c8b0be2b96e"
+  },
+  "title": "About me",
+  "category": "About me",
+  "text": "Hi!, I'm 17 years old",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42db016a79d4bd1395dc8"
+  },
+  "user": {
+    "$oid": "65e423f7b0114c8b0be2b96e"
+  },
+  "title": "About my family",
+  "category": "About",
+  "text": "Hi, this is my dog",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42e1d16a79d4bd1395dd2"
+  },
+  "user": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "title": "Help me!",
+  "category": "Help",
+  "text": "Where is the bak?",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42e2f16a79d4bd1395dd6"
+  },
+  "user": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "title": "Help us!",
+  "category": "Help",
+  "text": "Where is the bakery?",
+  "estado": true,
+  "__v": 0
+}]

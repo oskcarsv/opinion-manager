@@ -1,0 +1,39 @@
+[{
+  "_id": {
+    "$oid": "65e423eeb0114c8b0be2b96a"
+  },
+  "nombre": "Angel",
+  "username": "angelito",
+  "correo": "angelito@gmail.com",
+  "password": "$2a$10$NDTdJPWDLU0obO23UJb0Ge4cdRzNkwF.3aUY28/5M0kl2sHnKMAfG",
+  "role": "USER_ROLE",
+  "estado": true,
+  "google": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e423f7b0114c8b0be2b96e"
+  },
+  "nombre": "Oscar",
+  "username": "oscarito",
+  "correo": "oscarito@gmail.com",
+  "password": "$2a$10$z5U6QyN1DDG.XINoLlgjAurMikQsA6MLrzF4qwJyC1vR3HqmXU//a",
+  "role": "USER_ROLE",
+  "estado": true,
+  "google": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "nombre": "Alejandro",
+  "username": "alejandrito",
+  "correo": "danielito@gmail.com",
+  "password": "$2a$10$vmx54fki332QLHJPnvv0fOkI2yIsKiIevx3fGLvD/RRXnLSMuAOhq",
+  "role": "USER_ROLE",
+  "estado": true,
+  "google": true,
+  "__v": 0
+}]

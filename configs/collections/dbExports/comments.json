@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "65e42e6784bb605164c6c87a"
+  },
+  "user": {
+    "$oid": "65e423f7b0114c8b0be2b96e"
+  },
+  "post": {
+    "$oid": "65e42d4916a79d4bd1395dbb"
+  },
+  "text": "Yes, Welcome Pedro",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42ea484bb605164c6c882"
+  },
+  "user": {
+    "$oid": "65e423eeb0114c8b0be2b96a"
+  },
+  "post": {
+    "$oid": "65e42d9b16a79d4bd1395dc4"
+  },
+  "text": "Wow, is very interest",
+  "estado": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65e42ee784bb605164c6c888"
+  },
+  "user": {
+    "$oid": "65e423ffb0114c8b0be2b972"
+  },
+  "post": {
+    "$oid": "65e42e1d16a79d4bd1395dd2"
+  },
+  "text": "I'm sorry, I don't know",
+  "estado": true,
+  "__v": 0
+}]
