@@ -31,10 +31,8 @@ export const getPostById = async (req, res) => {
 export const createPost = async (req, res) => {
     const { title, category, text } = req.body;
 
-    // Accede al ID del usuario autenticado
     const userId = req.usuario._id;
 
-    // Obtener el nombre del usuario
     const user = await User.findById(userId);
 
     const post = new Post({ title, category, text, user: userId });
@@ -44,8 +42,34 @@ export const createPost = async (req, res) => {
     res.status(200).json({
         msg: "Post created successfully",
         post: {
-            ...post._doc, // Mostrar todos los datos de la publicación
-            user: user.nombre, // Mostrar solo el nombre del usuario
+            ...post._doc,
+            user: user.nombre,
         },
     });
+}
+
+export const updatePost = async (req, res) => {
+    const { id } = req.params;
+    const { _id, ...rest } = req.body;
+
+    const post = await Post.findById(id);
+
+    // Verificar propietario de la publicación
+    if (post.user.toString() !== req.usuario._id.toString()) { // Compara IDs como string
+        return res.status(403).json({
+            msg: "Access denied, only the owner of the post can edit this post"
+        });
+    }
+
+    const updatedPost = await Post.findByIdAndUpdate(id, rest, { new: true }); // {new: true} devuelve el documento actualizado
+
+    res.status(200).json({
+        msg: "Post updated successfully",
+        post: updatedPost
+    });
+}
+
+
+export const deletePost = async (req, res) => {
+
 }
