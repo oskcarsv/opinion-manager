@@ -61,13 +61,3 @@ export const updateUser = async (req, res = response) => {
         user,
     });
 }
-
-export const deleteUser = async (req, res) => {
-    const { id } = req.params;
-
-    const user = await User.findByIdAndUpdate(id, { estado: false });
-
-    const authenticatedUser = req.user;
-
-    res.status(200).json({ msg: 'Deactivated user', user, authenticatedUser });
-}
